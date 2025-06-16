@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      ESS
+      NeMo
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2025.</strong> All rights reserved.

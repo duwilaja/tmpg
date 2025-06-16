@@ -8,7 +8,7 @@ $bu=base_url()."adminlte310";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ESS | Log in</title>
+  <title>NeMo | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,14 +18,15 @@ $bu=base_url()."adminlte310";
   <link rel="stylesheet" href="<?php echo $bu;?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css"-->
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $bu;?>/dist/css/adminlte.min.css">
+  <link rel="shortcut icon" href="<?php echo $bu;?>/my/img/icon.png">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logox" style="text-align:center;">
-	<!--p><img src="<?php echo $bu;?>/my/img/logo.jpeg" style="max-width:250px;" /></p-->
+	<p><img src="<?php echo $bu;?>/my/img/pgd.png" style="max-width:250px;max-height:150px;" /></p>
     
-    <b style="font-size:4rem; line-height:40px;">ESS</b><br />
-	<span style="font-size:90%;">EMPLOYEE SELF SERVICE</span>
+    <!--b style="font-size:4rem; line-height:40px;">ESS</b><br />
+	<span style="font-size:90%;">EMPLOYEE SELF SERVICE</span-->
   </div>
   <!-- /.login-logo -->
   <div class="card">

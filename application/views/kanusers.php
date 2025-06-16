@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $bu=base_url()."adminlte310";
 
-$data["title"]="Holiday";
-$data["menu"]="holidays";
+$data["title"]="Kanwil User";
+$data["menu"]="kanusers";
 $data["pmenu"]="master";
 $data["session"]=$session;
 $data["bu"]=$bu;
@@ -28,7 +28,7 @@ $menu=$data['menu'];
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Master Data</li>
-              <li class="breadcrumb-item active">Holiday</li>
+              <li class="breadcrumb-item active">Kanwil User</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -50,10 +50,10 @@ $menu=$data['menu'];
                 <table id="example1" class="table table-sm table-bordered table-striped">
                   <thead>
 					  <tr>
-						<th>Date</th>
-						<th>Description</th>
 						<th>Kanwil</th>
-						<!--th>Access</th>
+						<th>User</th>
+						<!--th>Kanwil</th>
+						<th>Access</th>
 						<th>Group</th-->
 					  </tr>
                   </thead>
@@ -91,25 +91,17 @@ $menu=$data['menu'];
 		  
 			<div class="card-body">
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Date</label>
-				<div class="col-sm-8 input-group date" id="idate"  data-target-input="nearest">
-					    <input type="text" name="dt" id="dt" class="form-control datetimepicker-input form-control-sm" data-target="#idate">
-                        <div class="input-group-append" data-target="#idate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                        </div>
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Description</label>
-				<div class="col-sm-8 input-group">
-				  <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="...">
-				</div>
-			  </div>
-			  <div class="form-group row">
 				<label for="" class="col-sm-4 col-form-label">Kanwil</label>
 				<div class="col-sm-8 input-group">
-				  <select class="form-control form-control-sm" name="kanwil" id="kanwil" placeholder="...">
-					</select>
+				  <select name="kanwil" class="form-control form-control-sm" id="kanwil" placeholder="...">
+				  </select>
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-4 col-form-label">User</label>
+				<div class="col-sm-8 input-group">
+				  <select name="user" class="form-control form-control-sm" id="user" placeholder="...">
+				  </select>
 				</div>
 			  </div>
 			</div>
@@ -159,7 +151,7 @@ $(document).ready(function(){
 	});
 	$("#myf").validate({
 		rules: {
-		  dt: {
+		  kanwil: {
 			required: true
 		  },
 		  upwd: {
@@ -169,7 +161,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  name: {
+		  user: {
 			required: true
 		  },
 		  ugrp: {
@@ -189,7 +181,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	getCombo("md/gets",'#kanwil','','--- All ---');
+	getCombo("md/gets",'#kanwil','','-- Please Select --');
+	getCombo("md/gets",'#user','','-- Please Select --');
 	initDatePicker(["#idate"]);
 });
 

@@ -7,10 +7,10 @@ class Mydb extends CI_Model {
 	
 	private $smtp_prefix='ssl://';
 	
-	private $smtp_host='srv80.niagahoster.com';
+	private $smtp_host='mailserver.niagahoster.com';
 	private $smtp_port=465;
 	private $smtp_user='adminsystem@notificationmds.website';
-	private $smtp_pass='Omnicom1234!';
+	private $smtp_pass='omi';
 	
 	private $mail_from='adminsystem@notificationmds.website';
 	
@@ -128,23 +128,22 @@ class Mydb extends CI_Model {
 		return $GLOBALS['debug'];
 	}
 	
-	public function gettot($usr){
-		$where=$usr["uaccess"]=="ADM"?"":" where creator='".$usr["uid"]."' or approver='".$usr["uid"]."'";
-		$sql="select stts,count(*) as cnt from t_mediaplans $where group by stts";
-		$rs=$this->db->query($sql)->result_array();
-		return $rs;
+	public function getuseraccess(){
+		$lvl=array(array("v"=>"ADM","t"=>"Admin"),array("v"=>"NMS","t"=>"NMS"),array("v"=>"ENG","t"=>"Engineer"));
+		return $lvl;
 	}
-	public function getlist($usr,$stts=""){
-		$where=$usr["uaccess"]=="ADM"?"":" and (creator='".$usr["uid"]."' or approver='".$usr["uid"]."')";
-		$sql="select mpnumber,client,product,stts,approver from t_mediaplans where stts='$stts' $where order by lastupd";
-		$rs=$this->db->query($sql)->result_array();
-		return array_slice($rs,0,5);
+	public function getusergroup(){
+		$lvl=array(array("v"=>"lintasarta","t"=>"Lintasarta"),array("v"=>"telkom","t"=>"Telkom"),array("v"=>"jarkom","t"=>"Jarkom"));
+		return $lvl;
 	}
-	
-	public function getsstot($usr,$g,$w){
-		$where=$usr["uaccess"]=="ADM"?"":" and ss='".$usr["uid"]."'";
-		$sql="select $g  as stts,count(*) as cnt from t_invoices where $w $where";
-		$rs=$this->db->query($sql)->result_array();
-		return $rs;
+	public function getfieldlov(){
+		$lvl=array(array("v"=>"problem","t"=>"problem"),array("v"=>"service","t"=>"service"),
+		array("v"=>"backup_link","t"=>"backup link"),array("v"=>"device_type","t"=>"device type"));
+		return $lvl;
+	}
+	public function getstatus(){
+		$lvl=array(array("v"=>"new","t"=>"new"),array("v"=>"open","t"=>"open"),array("v"=>"progress","t"=>"progress"),
+		array("v"=>"solved","t"=>"solved"),array("v"=>"closed","t"=>"closed"));
+		return $lvl;
 	}
 }

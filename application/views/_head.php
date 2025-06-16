@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ESS | <?php echo $title ?></title>
+  <title>NeMo | <?php echo $title ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,6 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $bu;?>/dist/css/adminlte.min.css">
+  <link rel="shortcut icon" href="<?php echo $bu;?>/my/img/icon.png">
   <style type="text/css">
 	.hidden{
 		display: none;

@@ -18,14 +18,38 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+	 
+	public function __construct()
+	{
+		parent::__construct();
+		// Your own constructor code
+		$usr=$this->session->userdata('user_data');
+		if ( !isset($usr))
+		{ 
+			// Allow some methods?
+			$allowed = array(
+				'index',
+				'in',
+				'out',
+				'pwd'
+			);
+			//if ( ! in_array($this->router->fetch_method(), $allowed) && $usr["useraccess"]!='ADM' && $usr["usergrp"]!='')
+			//{
+				//echo "Direct access not allowed";
+			//}
+			redirect(base_url()."sign/out/1");
+		}
+	}
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$this->load->view('welcome_message');
+		echo "";
 	}
-	public function starter()
+	public function home()
 	{
 		$usr=$this->session->userdata('user_data');
 		$data['session']=$usr;
-		$this->load->view('starter',$data);
+		$this->load->view('home',$data);
 	}
+	
 }

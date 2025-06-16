@@ -5,13 +5,14 @@ $bux=base_url();
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="welcome/home" class="brand-link">
+    <!--a href="welcome/home" class="brand-link">
       <img src="<?php echo $bu;?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Employee Self Service</span>
-    </a>
-	<!--a href="" class="brand-link navbar-dark">
-		<img src="<?php echo $bu;?>/my/img/wang.png" alt="Bajeting" class="brand-image" /> 
-	</a-->
+    </a-->
+	<a href="#" class="brand-link navbar-light">
+		<img src="<?php echo $bu;?>/my/img/pgd.png" alt="Pegadaian" class="brand-image" />
+		<span class="brand-text font-weight-bold" style="color: black; font-weight: bold;">&nbsp;&nbsp;Network Monitoring</span>
+	</a>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -75,22 +76,22 @@ $bux=base_url();
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <!--li class="nav-item">
-                <a href="<?php echo $bux?>md/?p=clients" class="nav-link clients">
+              <li class="nav-item">
+                <a href="<?php echo $bux?>md/?p=kanwils" class="nav-link kanwils">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Division</p>
+                  <p>Kanwil</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo $bux?>md/?p=products" class="nav-link products">
+                <a href="<?php echo $bux?>md/?p=outlets" class="nav-link outlets">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Department</p>
+                  <p>Outlet</p>
                 </a>
-              </li-->
+              </li>
               <li class="nav-item">
-                <a href="<?php echo $bux?>md/?p=employees" class="nav-link employees">
+                <a href="<?php echo $bux?>md/?p=outips" class="nav-link outips">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Employee</p>
+                  <p>Outlet IP</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -99,45 +100,67 @@ $bux=base_url();
                   <p>Holiday</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>md/?p=filters" class="nav-link filters">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Filter</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>md/?p=notifys" class="nav-link notifys">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Notify</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>md/?p=kanusers" class="nav-link kanusers">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Kanwil User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>md/?p=m2ms" class="nav-link m2ms">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>M2M</p>
+                </a>
+              </li>
             </ul>
           </li>
 		  <li class="nav-item hr">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                HR
+                Tickets
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo $bux?>hratt" class="nav-link attendance">
+                <a href="<?php echo $bux?>tickets" class="nav-link attendance">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Attendance</p>
+                  <p>All</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?php echo $bux?>mo" class="nav-link mo">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Leave</p>
+                  <p>Open</p>
                 </a>
               </li>
 			  <li class="nav-item">
                 <a href="<?php echo $bux?>iv" class="nav-link iv">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Overtime</p>
+                  <p>Jarkom</p>
                 </a>
               </li>
 			  <li class="nav-item">
                 <a href="<?php echo $bux?>ss" class="nav-link ss">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Reimburse</p>
+                  <p>Relokasi</p>
                 </a>
               </li>
             </ul>
           </li>
-		<?php if($session["uaccess"]=='ADM'){?>
-		<?php } ?>
           <!--li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -157,32 +180,80 @@ $bux=base_url();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo $bux?>r/?v=hratt" class="nav-link hratt">
+                <a href="<?php echo $bux?>iv" class="nav-link hratt">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Attendance</p>
+                  <p>Summary</p>
                 </a>
               </li>
 			  <li class="nav-item">
                 <a href="<?php echo $bux?>iv" class="nav-link iv">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Leave</p>
+                  <p>Diagram</p>
                 </a>
               </li>
 			  <li class="nav-item">
                 <a href="<?php echo $bux?>ss" class="nav-link ss">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Overtime</p>
+                  <p>Tickets</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?php echo $bux?>bp" class="nav-link bp">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Reimburse</p>
+                  <p>Ticket History</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>SLA</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Status Duration</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Custom</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Outlets</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Outlets History</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Data Link</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>M2M</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo $bux?>bp" class="nav-link bp">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Archieve</p>
                 </a>
               </li>
             </ul>
           </li>
-		<?php if($session["uaccess"]=='ADM' && false){?>
+		<?php if(true){?>
 		  <li class="nav-item setting">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
@@ -193,18 +264,18 @@ $bux=base_url();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo $bux?>md/?p=usergrps" class="nav-link usergrps">
+                <a href="<?php echo $bux?>md/?p=lovs" class="nav-link lovs">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>User Group</p>
+                  <p>List of Values</p>
                 </a>
               </li>
-			  <li class="nav-item">
+			  <!--li class="nav-item">
                 <a href="<?php echo $bux?>md/?p=num" class="nav-link num">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>MP Numbering</p>
                 </a>
               </li>
-			  <!--li class="nav-item">
+			  <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Notification</p>
@@ -225,12 +296,12 @@ $bux=base_url();
   <aside class="control-sidebar control-sidebar-dark ">
     <!-- Control sidebar content goes here -->
     <div class="p-3">
-      <h5><?php echo $session["uname"]?></h5>
-      <p><?php echo $session["uaccess"]?></p>
+      <h5><?php echo $session["username"]?></h5>
+      <p><?php echo $session["usergrp"]?></p>
     </div>
 	<nav class="mt-2">
 		<ul class="nav nav-sidebar flex-column">
-		<?php if($session["uaccess"]=='ADM'){?>
+		<?php if($session["userlevel"]=='0'){?>
 		  <li class="nav-item">
 			<a href="<?php echo $bux?>md/?p=users" class="nav-link users">
 			  <i class="nav-icon fas fa-users"></i>

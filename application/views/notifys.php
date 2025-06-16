@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $bu=base_url()."adminlte310";
 
-$data["title"]="Holiday";
-$data["menu"]="holidays";
+$data["title"]="Notify";
+$data["menu"]="notifys";
 $data["pmenu"]="master";
 $data["session"]=$session;
 $data["bu"]=$bu;
@@ -28,7 +28,7 @@ $menu=$data['menu'];
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Master Data</li>
-              <li class="breadcrumb-item active">Holiday</li>
+              <li class="breadcrumb-item active">Notify</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -50,11 +50,10 @@ $menu=$data['menu'];
                 <table id="example1" class="table table-sm table-bordered table-striped">
                   <thead>
 					  <tr>
-						<th>Date</th>
-						<th>Description</th>
-						<th>Kanwil</th>
-						<!--th>Access</th>
-						<th>Group</th-->
+						<th>Minutes</th>
+						<th>Group</th>
+						<th>Type</th>
+						<th>Status</th>
 					  </tr>
                   </thead>
                   <tbody>
@@ -91,25 +90,30 @@ $menu=$data['menu'];
 		  
 			<div class="card-body">
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Date</label>
-				<div class="col-sm-8 input-group date" id="idate"  data-target-input="nearest">
-					    <input type="text" name="dt" id="dt" class="form-control datetimepicker-input form-control-sm" data-target="#idate">
-                        <div class="input-group-append" data-target="#idate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                        </div>
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Description</label>
+				<label for="" class="col-sm-4 col-form-label">Group</label>
 				<div class="col-sm-8 input-group">
-				  <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="...">
-				</div>
-			  </div>
-			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Kanwil</label>
-				<div class="col-sm-8 input-group">
-				  <select class="form-control form-control-sm" name="kanwil" id="kanwil" placeholder="...">
+					<select class="form-control form-control-sm" name="grp" id="grp">
 					</select>
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-4 col-form-label">Type</label>
+				<div class="col-sm-8 input-group">
+					<select class="form-control form-control-sm" name="typ" id="typ">
+					</select>
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-4 col-form-label">Status</label>
+				<div class="col-sm-8 input-group">
+					<select class="form-control form-control-sm" name="stts" id="stts">
+					</select>
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-4 col-form-label">Minutes</label>
+				<div class="col-sm-8 input-group">
+					<input type="text" class="form-control form-control-sm" name="mnt" id="mnt" placeholder="...">
 				</div>
 			  </div>
 			</div>
@@ -159,7 +163,7 @@ $(document).ready(function(){
 	});
 	$("#myf").validate({
 		rules: {
-		  dt: {
+		  grp: {
 			required: true
 		  },
 		  upwd: {
@@ -169,7 +173,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  name: {
+		  typ: {
 			required: true
 		  },
 		  ugrp: {
@@ -179,18 +183,20 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  uaccess: {
+		  stts: {
 			required: true
 		  },
-		  umail: {
-			  required: false,
-			  email: true
+		  mnt: {
+			  required: true,
+			  number : true
 		  }
 		}
 	});
 	
-	getCombo("md/gets",'#kanwil','','--- All ---');
-	initDatePicker(["#idate"]);
+	getCombo("md/gets",'#grp','','--Please Select--');
+	getCombo("md/gets",'#typ','','--Please Select--');
+	getCombo("md/gets",'#stts','','--Please Select--');
+	//initDatePicker(["#idate"]);
 });
 
 function reloadTable(frm){

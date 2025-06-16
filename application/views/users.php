@@ -28,7 +28,7 @@ $menu=$data['menu'];
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#"></a></li>
-              <li class="breadcrumb-item active"></li>
+              <li class="breadcrumb-item active">Users</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -52,7 +52,7 @@ $menu=$data['menu'];
 					  <tr>
 						<th>ID</th>
 						<th>Name</th>
-						<th>NIK</th>
+						<th>Group</th>
 						<th>Access</th>
 						<!--th>Group</th-->
 					  </tr>
@@ -93,30 +93,32 @@ $menu=$data['menu'];
 			  <div class="form-group row">
 				<label for="" class="col-sm-4 col-form-label">ID</label>
 				<div class="col-sm-8 input-group">
-				  <input type="text" name="uid" class="form-control form-control-sm" id="uid" placeholder="...">
+				  <input type="text" name="userid" class="form-control form-control-sm" id="userid" placeholder="...">
 				</div>
 			  </div>
 			  <div class="form-group row">
 				<label for="" class="col-sm-4 col-form-label">Name</label>
 				<div class="col-sm-8 input-group">
-				  <input type="text" name="uname" class="form-control form-control-sm" id="uname" placeholder="...">
+				  <input type="text" name="username" class="form-control form-control-sm" id="username" placeholder="...">
 				</div>
 			  </div>
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">NIK</label>
+				<label for="" class="col-sm-4 col-form-label">Access</label>
 				<div class="col-sm-8 input-group">
-				  <input type="text" name="nik" class="form-control form-control-sm" id="nik" placeholder="...">
-				</div>
-			  </div>
-			  <div class="form-group row hidden">
-				<label for="" class="col-sm-4 col-form-label">Group</label>
-				<div class="col-sm-8 input-group">
-				  <!--input type="text" name="ugrp" class="form-control form-control-sm" id="ugrp" placeholder="..."-->
-				  <select name="ugrp" class="form-control form-control-sm" id="ugrp" placeholder="...">
+				  <!--input type="text" name="nik" class="form-control form-control-sm" id="nik" placeholder="..."-->
+				  <select name="useraccess" class="form-control form-control-sm" id="useraccess" placeholder="...">
 				  </select>
 				</div>
 			  </div>
-			  <div class="form-group row hidden">
+			  <div class="form-group row">
+				<label for="" class="col-sm-4 col-form-label">Group</label>
+				<div class="col-sm-8 input-group">
+				  <!--input type="text" name="ugrp" class="form-control form-control-sm" id="ugrp" placeholder="..."-->
+				  <select name="usergrp" class="form-control form-control-sm" id="usergrp" placeholder="...">
+				  </select>
+				</div>
+			  </div>
+			  <!--div class="form-group row hidden">
 				<label for="" class="col-sm-4 col-form-label">Email</label>
 				<div class="col-sm-8 input-group">
 				  <input type="text" name="umail" class="form-control form-control-sm" id="umail" placeholder="...">
@@ -131,7 +133,7 @@ $menu=$data['menu'];
 					<option value="USR">User</option>
 				  </select>
 				</div>
-			  </div>
+			  </div-->
 			  <div class="form-group row">
 				<label for="" class="col-sm-4 col-form-label">Set Password</label>
 				<div class="col-sm-8 input-group">
@@ -185,7 +187,7 @@ $(document).ready(function(){
 	});
 	$("#myf").validate({
 		rules: {
-		  uid: {
+		  userid: {
 			required: true
 		  },
 		  upwd: {
@@ -195,7 +197,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  uname: {
+		  username: {
 			required: true
 		  },
 		  ugrp: {
@@ -205,7 +207,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  uaccess: {
+		  useraccess: {
 			required: true
 		  },
 		  umail: {
@@ -215,7 +217,9 @@ $(document).ready(function(){
 		}
 	});
 	
-	//getCombo("md/gets",'<?php echo base64_encode($ct)?>','<?php echo base64_encode($cc)?>','<?php echo base64_encode($cw)?>','#ugrp');
+	getCombo("md/gets",'#usergrp','','All');
+	getCombo("md/gets",'#useraccess');
+	
 });
 
 function reloadTable(frm){

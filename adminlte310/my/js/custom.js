@@ -199,10 +199,10 @@ function afterOpenForm(frm,modal,overlay='',data=''){
 	}
 }
 
-function getCombo(u,t,c,w,tgt,dv='',blnk=''){
+function getCombo(u,tgt,dv='',blnk=''){
 	var url=bu+u;
 	var mtd='POST';
-	var frmdata={t:t,c:c,w:w};
+	var frmdata={tgt:tgt};
 	
 	//alert(frmdata);
 	

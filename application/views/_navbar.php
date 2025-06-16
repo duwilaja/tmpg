@@ -126,13 +126,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </li-->
       <li class="nav-item">
+        <a class="nav-link" href="#" role="button" title="Map View">
+          <i class="fas fa-map-marked-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" target="_blank" role="button" title="Outlets">
+          <i class="fas fa-balance-scale"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-user"></i>&nbsp;&nbsp;<?php echo $session['uid']?>
+          <i class="fas fa-user"></i>&nbsp;&nbsp;<?php echo $session['userid']?>
         </a>
       </li>
     </ul>

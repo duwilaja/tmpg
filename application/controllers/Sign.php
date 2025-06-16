@@ -27,14 +27,14 @@ class Sign extends CI_Controller {
 		//login
 		$uid=$this->input->post("uid");
 		$upwd=$this->input->post("upwd");
-		$this->db->where('uid',$uid);
-		$this->db->where('upwd',md5($upwd));
+		$this->db->where('userid',$uid);
+		$this->db->where('userpwd',md5($upwd));
 		//$this->db->where('isactive','Y');
-		$retval=$this->db->get("users")->result_array();
+		$retval=$this->db->get("tm_users")->result_array();
 		if(count($retval)>0){
 			$loggedin=true;
 			$this->session->set_userdata('user_data',$retval[0]);
-			redirect('welcome/starter');
+			redirect('welcome/home');
 		}
 		$data["uid"]=$uid;
 		$data["upwd"]=$upwd;
@@ -64,14 +64,17 @@ class Sign extends CI_Controller {
 			}else{
 				$rowid=$usr['rowid'];
 				$now=date('Y-m-d H:i:s');
-				$uid=$usr["uid"];
-				$sql="update users set upwd='$npwd',lastupd='$now',updby='$uid' where rowid=$rowid and upwd='$opwd'";
-				$ok=$this->db->query($sql);
+				$uid=$usr["userid"];
+				$data["userpwd"]=$npwd;
+				$where=array("userid"=>$uid,"userpwd"=>$opwd);
+				$ok=$this->db->update("tm_users",$data,$where);
+				//$sql="update users set upwd='$npwd',lastupd='$now',updby='$uid' where rowid=$rowid and upwd='$opwd'";
+				//$ok=$this->db->query($sql);
 				if($ok){
 					if($this->db->affected_rows()>0){
 						$ret=array('msgs'=>'Password changed','type'=>'success','head'=>'');
-						$usr['lastupd']=$now;
-						$this->session->set_userdata('user_data',$usr);
+						//$usr['lastupd']=$now;
+						//$this->session->set_userdata('user_data',$usr);
 					}else{
 						$ret=array('msgs'=>'Invalid old password','type'=>'error','head'=>'');
 					}

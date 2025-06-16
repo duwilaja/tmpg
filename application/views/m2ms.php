@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $bu=base_url()."adminlte310";
 
-$data["title"]="Holiday";
-$data["menu"]="holidays";
+$data["title"]="M2M";
+$data["menu"]="m2ms";
 $data["pmenu"]="master";
 $data["session"]=$session;
 $data["bu"]=$bu;
@@ -28,7 +28,7 @@ $menu=$data['menu'];
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Master Data</li>
-              <li class="breadcrumb-item active">Holiday</li>
+              <li class="breadcrumb-item active">M2M</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -50,11 +50,18 @@ $menu=$data['menu'];
                 <table id="example1" class="table table-sm table-bordered table-striped">
                   <thead>
 					  <tr>
-						<th>Date</th>
-						<th>Description</th>
+						<th>Telp#</th>
+						<th>IP</th>
+						<th>SN</th>
+						<th>Outlet ID</th>
+						<th>Name</th>
 						<th>Kanwil</th>
-						<!--th>Access</th>
-						<th>Group</th-->
+						<th>Status</th>
+						<th>Penggunaan</th>
+						<th>Jenis</th>
+						<th>Outlet Pengguna</th>
+						<th>Nama Pengguna</th>
+						<th>Tiket#</th>
 					  </tr>
                   </thead>
                   <tbody>
@@ -69,7 +76,7 @@ $menu=$data['menu'];
   <!-- /.content-wrapper -->
 
   <div class="modal fade" id="modal-frm">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 		<div id="ovl" class="overlay" style="display:none;">
 			<i class="fas fa-2x fa-sync fa-spin"></i>
@@ -91,26 +98,51 @@ $menu=$data['menu'];
 		  
 			<div class="card-body">
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Date</label>
-				<div class="col-sm-8 input-group date" id="idate"  data-target-input="nearest">
-					    <input type="text" name="dt" id="dt" class="form-control datetimepicker-input form-control-sm" data-target="#idate">
-                        <div class="input-group-append" data-target="#idate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                        </div>
+				<label for="" class="col-sm-2 col-form-label">No Telp</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="notel" id="notel" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">IP</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="iptel" id="iptel" placeholder="...">
 				</div>
 			  </div>
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Description</label>
-				<div class="col-sm-8 input-group">
-				  <input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="...">
+				<label for="" class="col-sm-2 col-form-label">S/N</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="sn" id="sn" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">Jenis</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="jenis" id="jenis" placeholder="...">
 				</div>
 			  </div>
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Kanwil</label>
-				<div class="col-sm-8 input-group">
-				  <select class="form-control form-control-sm" name="kanwil" id="kanwil" placeholder="...">
-					</select>
+				<label for="" class="col-sm-2 col-form-label">Outlet ID</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="oid" id="oid" placeholder="...">
 				</div>
+				<label for="" class="col-sm-2 col-form-label">Outlet ID Pengguna</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="oidx" id="oidx" placeholder="...">
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-2 col-form-label">Penggunaan</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="guna" id="guna" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">Status</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="stts" id="stts" placeholder="...">
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-2 col-form-label">Tiket#</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="ticketno" id="ticketno" placeholder="...">
+				</div>
+				
 			  </div>
 			</div>
 			<!-- /.card-body -->
@@ -159,7 +191,7 @@ $(document).ready(function(){
 	});
 	$("#myf").validate({
 		rules: {
-		  dt: {
+		  notel: {
 			required: true
 		  },
 		  upwd: {
@@ -169,7 +201,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  name: {
+		  sn: {
 			required: true
 		  },
 		  ugrp: {
@@ -189,7 +221,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	getCombo("md/gets",'#kanwil','','--- All ---');
+	getCombo("md/gets",'#kanwil','','-- Please Select --');
+	getCombo("md/gets",'#user','','-- Please Select --');
 	initDatePicker(["#idate"]);
 });
 

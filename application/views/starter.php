@@ -5,6 +5,7 @@ $bu=base_url()."adminlte310";
 
 $data["title"]="Home";
 $data["menu"]="home";
+$data["pmenu"]="";
 $data["session"]=$session;
 $data["bu"]=$bu;
 
