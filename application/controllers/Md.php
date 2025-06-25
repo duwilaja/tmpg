@@ -29,7 +29,8 @@ class Md extends CI_Controller {
 		if(isset($usr)){
 			$view=$this->input->get("p");
 			$data["session"]=$usr;
-			if($usr["useraccess"]!='ADM' && $usr["usergrp"]!='') $view='unauthorize';
+			$views=array("kanwils","outlets","outips","holidays","filters","notifys","kanusers","m2ms","lovs","users");
+			if(($usr["useraccess"]!='ADM' && $usr["usergrp"]!='') || !in_array($view,$views)) $view='unauthorize';
 			$this->load->view($view,$data);
 		}else{
 			redirect(base_url()."sign/out/1");
@@ -68,7 +69,15 @@ class Md extends CI_Controller {
 							$c="oid,oidx,iptel,notel,sn,stts,guna,jenis,ticketno";
 							$t="tm_m2ms";
 							break;
-			case "lovs": $sql="select v,g,rowid from tm_lovs";
+			case "outlets": $sql="select oid,oname,cabang,kanwil,area,propinsi,pic,contact,pic2,contact2,lat,lng,tipe,lastupd,updby,rowid from tm_outlets";
+							$c="oid,oname,cabang,kanwil,area,lnk,addr,propinsi,sid,pic,pic2,contact,contact2,wibstart,wibend,lat,lng,bupe,bubw,buce,buprovider,busid,svcs,tipe";
+							$t="tm_outlets";
+							break;
+			case "outips": $sql="select i.oid,oname,cabang,kanwil,area,i.layanan,i.sid,i.iplan,i.ipwan,i.lastupd,i.updby,i.rowid from tm_ips i left join tm_outlets o on o.oid=i.oid";
+							$c="oid,ipwan,iplan,sid,layanan,slag,mrc,boq";
+							$t="tm_ips";
+							break;
+			case "lovs": $sql="select g,v,rowid from tm_lovs";
 							$c="v,g";
 							$t="tm_lovs";
 							break;
@@ -141,6 +150,8 @@ class Md extends CI_Controller {
 				case  "#usergrp": $data=$this->mydb->getusergroup(); break;
 				case  "#grp": $data=$this->mydb->getusergroup(); break;
 				case  "#g": $data=$this->mydb->getfieldlov(); break;
+				case "#layanan": $sql="select v,v as t from tm_lovs where g='service' order by v"; 
+								$data=$this->db->query($sql)->result_array(); break;
 				case  "#stts": $data=$this->mydb->getstatus(); break;
 			}
 		}

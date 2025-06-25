@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $bu=base_url()."adminlte310";
 
-$data["title"]="List of Values";
-$data["menu"]="lovs";
-$data["pmenu"]="setting";
+$data["title"]="Outlet IP";
+$data["menu"]="outips";
+$data["pmenu"]="master";
 $data["session"]=$session;
 $data["bu"]=$bu;
 
@@ -27,8 +27,8 @@ $menu=$data['menu'];
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Setting</li>
-              <li class="breadcrumb-item active">List of Values</li>
+              <li class="breadcrumb-item">Master Data</li>
+              <li class="breadcrumb-item active">Outlet IP</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -42,6 +42,7 @@ $menu=$data['menu'];
 		<div class="card">
 			<div class="card-header">
 				<div class="card-tools">
+					<button class="btn btn-warning btn-sm" onclick="$('#modal-batch').modal('show');"><i class="fas fa-upload"></i></button>
 					<button class="btn btn-success btn-sm" onclick="reloadTable()"><i class="fas fa-sync"></i></button>
 					<button class="btn btn-primary btn-sm" onclick="openf()"><i class="fas fa-plus"></i></button>
 				</div>
@@ -50,11 +51,20 @@ $menu=$data['menu'];
                 <table id="example1" class="table table-sm table-bordered table-striped">
                   <thead>
 					  <tr>
-						<th>Field</th>
-						<th>Value</th>
-						<!--th>Kanwil</th>
-						<th>Access</th>
-						<th>Group</th-->
+						<th>Outlet ID</th>
+						<th>Name</th>
+						<th>Cabang</th>
+						<th>Kanwil</th>
+						<th>Area</th>
+						<th>Layanan</th>
+						<th>SID</th>
+						<th>IP LAN</th>
+						<th>IP WAN</th>
+						<!--th>SLA G</th>
+						<th>MRC</th>
+						<th>BOQ</th-->
+						<th>Updated</th>
+						<th>By</th>
 					  </tr>
                   </thead>
                   <tbody>
@@ -67,9 +77,12 @@ $menu=$data['menu'];
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+<?php
+$data["batchsample"]=base_url()."sample_ips.xls";
+$this->load->view("batch",$data);
+?>
   <div class="modal fade" id="modal-frm">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 		<div id="ovl" class="overlay" style="display:none;">
 			<i class="fas fa-2x fa-sync fa-spin"></i>
@@ -91,16 +104,44 @@ $menu=$data['menu'];
 		  
 			<div class="card-body">
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Value</label>
-				<div class="col-sm-8 input-group">
-				  <input type="text" name="v" class="form-control form-control-sm" id="v" placeholder="...">
+				<label for="" class="col-sm-2 col-form-label">Outlet ID</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="oid" id="oid" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">SID</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="sid" id="sid" placeholder="...">
 				</div>
 			  </div>
 			  <div class="form-group row">
-				<label for="" class="col-sm-4 col-form-label">Field</label>
-				<div class="col-sm-8 input-group">
-					<select class="form-control form-control-sm" name="g" id="g">
+				<label for="" class="col-sm-2 col-form-label">IP WAN</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="ipwan" id="ipwan" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">IP LAN</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="iplan" id="iplan" placeholder="...">
+				</div>
+			  </div>
+			  <div class="form-group row">
+				<label for="" class="col-sm-2 col-form-label">Service</label>
+				<div class="col-sm-4 input-group">
+					<select class="form-control form-control-sm input-sm" name="layanan" id="layanan">
 					</select>
+				</div>
+				<label for="" class="col-sm-2 col-form-label hidden">BOQ</label>
+				<div class="col-sm-4 input-group hidden">
+					<input type="text" class="form-control form-control-sm input-sm" name="boq" id="boq" placeholder="...">
+				</div>
+			  </div>
+			  <div class="form-group row hidden">
+				<label for="" class="col-sm-2 col-form-label">SLA G %</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="slag" id="slag" placeholder="...">
+				</div>
+				<label for="" class="col-sm-2 col-form-label">MRC</label>
+				<div class="col-sm-4 input-group">
+					<input type="text" class="form-control form-control-sm input-sm" name="mrc" id="mrc" placeholder="...">
 				</div>
 			  </div>
 			</div>
@@ -150,7 +191,7 @@ $(document).ready(function(){
 	});
 	$("#myf").validate({
 		rules: {
-		  v: {
+		  oid: {
 			required: true
 		  },
 		  upwd: {
@@ -160,7 +201,7 @@ $(document).ready(function(){
 					return false;
 				}
 		  },
-		  g: {
+		  layanan: {
 			required: true
 		  },
 		  ugrp: {
@@ -180,7 +221,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	getCombo("md/gets",'#g','','--- Please Select ---');
+	getCombo("md/gets",'#layanan','','-- Please Select --');
+	//getCombo("md/gets",'#user','','-- Please Select --');
 	initDatePicker(["#idate"]);
 });
 

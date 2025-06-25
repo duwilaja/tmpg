@@ -42,6 +42,7 @@ $menu=$data['menu'];
 		<div class="card">
 			<div class="card-header">
 				<div class="card-tools">
+					<button class="btn btn-warning btn-sm" onclick="$('#modal-batch').modal('show');"><i class="fas fa-upload"></i></button>
 					<button class="btn btn-success btn-sm" onclick="reloadTable()"><i class="fas fa-sync"></i></button>
 					<button class="btn btn-primary btn-sm" onclick="openf()"><i class="fas fa-plus"></i></button>
 				</div>
@@ -74,7 +75,10 @@ $menu=$data['menu'];
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+<?php
+$data["batchsample"]=base_url()."sample_m2ms.xls";
+$this->load->view("batch",$data);
+?>
   <div class="modal fade" id="modal-frm">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
